@@ -17,4 +17,5 @@ func InitTemplate() {
 		os.Exit(1)
 	}
 	Temp = temp
+
 }

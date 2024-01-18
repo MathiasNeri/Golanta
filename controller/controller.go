@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strings"
+	"strconv"
 )
 
 var id = 1
@@ -29,8 +29,22 @@ const Port = "localhost:8080"
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	LoadDataFromJSON()
-
 	inittemplate.Temp.ExecuteTemplate(w, "index", adventurers)
+}
+
+func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
+	//Charger le JSO
+	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
+	LoadDataFromJSON()
+	var selectedAdventurer Adventurer
+	for _, adventurer := range adventurers {
+		fmt.Println(adventurer)
+		if adventurer.CharId == id {
+			selectedAdventurer = adventurer
+		}
+	}
+	fmt.Println(selectedAdventurer)
+	inittemplate.Temp.ExecuteTemplate(w, "adventurer", selectedAdventurer)
 }
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
@@ -48,8 +62,15 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProfileHandler(w http.ResponseWriter, r *http.Request) {
-	name := r.FormValue("name")
-	adventurer, err := FindAdventurerByName(name)
+	// Utilisez l'ID plutôt que le nom pour la recherche
+	idStr := r.FormValue("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "ID d'aventurier non valide", http.StatusBadRequest)
+		return
+	}
+
+	adventurer, err := FindAdventurerByID(id)
 	if err != nil {
 		http.Error(w, "Aventurier non trouvé", http.StatusNotFound)
 		return
@@ -93,25 +114,13 @@ func LoadDataFromJSON() {
 	}
 }
 
-func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
-	segments := strings.Split(r.URL.Path, "/")
-	name := segments[len(segments)-1]
-	adventurer, err := FindAdventurerByName(name)
-	if err != nil {
-		http.Error(w, "Aventurier non trouvé", http.StatusNotFound)
-		return
-	}
-
-	inittemplate.Temp.ExecuteTemplate(w, "adventurer", adventurer)
-}
-
-func FindAdventurerByName(name string) (*Adventurer, error) {
+func FindAdventurerByID(id int) (*Adventurer, error) {
 	LoadDataFromJSON()
 
 	for _, adv := range adventurers {
-		if adv.Name == name {
+		if adv.CharId == id {
 			return &adv, nil
 		}
 	}
-	return nil, fmt.Errorf("Aventurier avec le nom %s non trouvé", name)
+	return nil, fmt.Errorf("Aventurier avec l'ID %d non trouvé", id)
 }
