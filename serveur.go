@@ -1,6 +1,7 @@
 package main
 
 import (
+	controller "Golanta/controller"
 	"Golanta/manager"
 	"Golanta/routeur"
 	initTemplate "Golanta/templates"
@@ -8,6 +9,8 @@ import (
 )
 
 func main() {
+	controller.LoadDataFromJSON()
+
 	manager.PrintColorResult("purple", "server is running...")
 
 	fmt.Println("")

@@ -1,4 +1,4 @@
-{{define "index"}}
+{{define "adventurer"}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
     <h1>Liste des Aventuriers</h1>
     <ul>
         {{range .}}
-        <li><a href="/character/{{.id}}">{{.name}}</a></li>
+        <li><a href="/character/{{.CharId}}">{{.Name}}</a></li>
         {{end}}
     </ul>
 </body>

@@ -8,9 +8,12 @@ import (
 )
 
 func InitServe() {
+
 	FileServer := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", FileServer))
-	http.HandleFunc("/", controller.Indexhandler)
+	http.HandleFunc("/", controller.IndexHandler)
+	http.HandleFunc("/adventurer", controller.AdventurerHandler)
+	http.HandleFunc("/create", controller.CreateHandler)
 
 	if err := http.ListenAndServe(controller.Port, nil); err != nil {
 
