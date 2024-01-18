@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -87,7 +86,7 @@ func SaveDataToJSON() {
 		return
 	}
 
-	err = ioutil.WriteFile("characters.json", data, 0644)
+	err = os.WriteFile("characters.json", data, 0644)
 	if err != nil {
 		fmt.Println("Erreur lors de l'écriture du fichier JSON:", err)
 	}
