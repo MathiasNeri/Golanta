@@ -33,7 +33,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
-	//Charger le JSO
+	//Charger le JSON
 	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
 	LoadDataFromJSON()
 	var selectedAdventurer Adventurer
