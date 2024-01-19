@@ -10,8 +10,6 @@ import (
 	"strconv"
 )
 
-var id = 1
-
 type Adventurer struct {
 	CharId  int    `json:"id"`
 	Name    string `json:"name"`
@@ -32,7 +30,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
-	//Charger le JSON
+	//Charger le JSO
 	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
 	LoadDataFromJSON()
 	var selectedAdventurer Adventurer
@@ -42,16 +40,18 @@ func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
 			selectedAdventurer = adventurer
 		}
 	}
-	fmt.Println(selectedAdventurer)
 	inittemplate.Temp.ExecuteTemplate(w, "adventurer", selectedAdventurer)
 }
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		charid := id
-		id += 1
+		LoadDataFromJSON()
+
 		name := r.FormValue("name")
 		class := r.FormValue("class")
+
+		charid := getNextCharID()
+
 		adventurers = append(adventurers, Adventurer{CharId: charid, Name: name, Class: class})
 		SaveDataToJSON()
 		http.Redirect(w, r, "/", http.StatusSeeOther)
@@ -121,5 +121,19 @@ func FindAdventurerByID(id int) (*Adventurer, error) {
 			return &adv, nil
 		}
 	}
-	return nil, fmt.Errorf("Aventurier avec l'ID %d non trouvé", id)
+	return nil, fmt.Errorf("aventurier avec l'ID %d non trouvé", id)
+}
+
+func getNextCharID() int {
+	highestID := 0
+
+	// Loop through the adventurers to find the highest CharId
+	for _, adv := range adventurers {
+		if adv.CharId > highestID {
+			highestID = adv.CharId
+		}
+	}
+
+	// Increment the highest ID by 1 to get the next available ID
+	return highestID + 1
 }
