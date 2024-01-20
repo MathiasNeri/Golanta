@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création d'Aventurier</title>
+    <link rel="stylesheet" href="/static/style/create.css"> 
+    <script src="/static/style/create.js"></script>
 </head>
 <body>
     <h1>Création d'Aventurier</h1>
@@ -14,13 +16,31 @@
 
         <label for="equipe">Equipe :</label>
         <select id="equipe" name="equipe" required>
-            <option value="Equipe_Jaune">Equipe jaune</option>
-            <option value="Equipe_Rouge">Equipe Rouge</option>
-            <!-- Ajoutez d'autres classes selon votre univers -->
+            <option value="Equipe Jaune">Equipe jaune</option>
+            <option value="Equipe Rouge">Equipe Rouge</option>
+        </select>
+            <label for="hp">HP :</label>
+        <div class="PB-range-slider-div">
+            <input type="range" id="hp" name="hp" min="0" max="10" value="5" class="PB-range-slider" oninput="updateSliders(this)">
+            <span id="hp-value" class="PB-range-slidervalue">5</span>
+        </div>
+            <label for="res">Resistance :</label>
+        <div class="PB-range-slider-div">
+            <input type="range" id="res" name="res" min="0" max="10" value="5" class="PB-range-slider" oninput="updateSliders(this)">
+            <span id="res-value" class="PB-range-slidervalue">5</span>
+        </div>
+
+        <label for="level">Niveau De Survie :</label>
+        <select id="level" name="level" required>
+            <option value="Nul">Nul</option>
+            <option value="Pas trop mal">Pas trop mal</option>
+            <option value="Bon">Bon</option>
+            <option value="Excellent">Excellent</option>
         </select>
 
         <button type="submit">Créer Aventurier</button>
     </form>
+
 </body>
 </html>
 {{end}}

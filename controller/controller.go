@@ -14,8 +14,9 @@ type Adventurer struct {
 	CharId     int    `json:"id"`
 	Name       string `json:"name"`
 	Equipe     string `json:"equipe"`
-	Lvl_survie int    `json:"level"`
+	Lvl_survie string `json:"level"`
 	HP         int    `json:"hp"`
+	Res        int    `json:"res"`
 }
 
 var adventurers []Adventurer
@@ -47,14 +48,29 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 
 		name := r.FormValue("name")
 		equipe := r.FormValue("equipe")
-		level, errLevel := strconv.Atoi(r.FormValue("level"))
+		level := r.FormValue("level")
 		hp, errHp := strconv.Atoi(r.FormValue("hp"))
+		res, errRes := strconv.Atoi(r.FormValue("res"))
 
-		fmt.Println(errHp, errLevel)
+		// Vérifier les erreurs de conversion
+		if errHp != nil || errRes != nil {
+			fmt.Println("Error parsing HP or Res from form:", errHp, errRes)
+			// Envoyer une réponse d'erreur au client
+			http.Error(w, "Invalid HP or Res values", http.StatusBadRequest)
+			return
+		}
+
+		// Vérifier que la somme des HP et Res ne dépasse pas 10
+		if hp+res > 10 {
+			fmt.Println("La somme des HP et Res ne peut pas dépasser 10")
+			// Envoyer une réponse d'erreur au client
+			http.Error(w, "La somme des HP et Res ne peut pas dépasser 10", http.StatusBadRequest)
+			return
+		}
 
 		charid := getNextCharID()
 
-		adventurers = append(adventurers, Adventurer{CharId: charid, Name: name, Equipe: equipe, Lvl_survie: level, HP: hp})
+		adventurers = append(adventurers, Adventurer{CharId: charid, Name: name, Equipe: equipe, Lvl_survie: level, HP: hp, Res: res})
 		SaveDataToJSON()
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return

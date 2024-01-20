@@ -1,58 +1,34 @@
 [
   {
     "id": 1,
-    "name": "abcedaire",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
+    "name": "dzq",
+    "equipe": "Equipe Jaune",
+    "level": "Pas trop mal",
+    "hp": 0,
+    "res": 0
   },
   {
     "id": 2,
-    "name": "hekp",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
+    "name": "jean",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 4,
+    "res": 6
   },
   {
     "id": 3,
-    "name": "opps",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
+    "name": "uygh",
+    "equipe": "Equipe Rouge",
+    "level": "Bon",
+    "hp": 5,
+    "res": 5
   },
   {
     "id": 4,
-    "name": "dfe",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
-  },
-  {
-    "id": 5,
-    "name": "Neri_Mathias_API",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
-  },
-  {
-    "id": 6,
-    "name": "b",
-    "equipe": "",
-    "level": 0,
-    "hp": 0
-  },
-  {
-    "id": 7,
-    "name": "jean",
-    "equipe": "Equipe_Rouge",
-    "level": 0,
-    "hp": 0
-  },
-  {
-    "id": 8,
-    "name": "Neri_Mathias_API",
-    "equipe": "Equipe_Rouge",
-    "level": 0,
-    "hp": 0
+    "name": "hgrdg",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
   }
 ]
