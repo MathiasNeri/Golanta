@@ -133,6 +133,15 @@ func getNextCharID() int {
 	return highestID + 1
 }
 
+func TheUpdateHandler(w http.ResponseWriter, r *http.Request) {
+	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
+	ad, err := FindAdventurerByID(id)
+	if err != nil {
+		fmt.Println("failed to find selected char for update")
+	}
+	inittemplate.Temp.ExecuteTemplate(w, "update", ad)
+}
+
 func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		LoadDataFromJSON()
@@ -148,9 +157,13 @@ func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 				adventurers[i].Equipe = r.FormValue("equipe")
 				adventurers[i].Lvl_survie = r.FormValue("level")
 				adventurers[i].HP, err = strconv.Atoi(r.FormValue("hp"))
+				if err != nil {
+					http.Error(w, "Invalid HP value", http.StatusBadRequest)
+					return
+				}
 				adventurers[i].Res, err = strconv.Atoi(r.FormValue("res"))
 				if err != nil {
-					http.Error(w, "Invalid HP or Res values", http.StatusBadRequest)
+					http.Error(w, "Invalid Res values", http.StatusBadRequest)
 					return
 				}
 				if adventurers[i].HP+adventurers[i].Res > 10 {

@@ -38,5 +38,13 @@
     "level": "Nul",
     "hp": 5,
     "res": 5
+  },
+  {
+    "id": 6,
+    "name": "hekp",
+    "equipe": "Equipe Rouge",
+    "level": "Excellent",
+    "hp": 5,
+    "res": 5
   }
 ]

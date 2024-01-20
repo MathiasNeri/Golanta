@@ -14,7 +14,8 @@ func InitServe() {
 	http.HandleFunc("/", controller.IndexHandler)
 	http.HandleFunc("/adventurer", controller.AdventurerHandler)
 	http.HandleFunc("/create", controller.CreateHandler)
-	http.HandleFunc("/update", controller.UpdateHandler)
+	http.HandleFunc("/update", controller.TheUpdateHandler)
+	http.HandleFunc("/updateHandler", controller.UpdateHandler)
 
 	if err := http.ListenAndServe(controller.Port, nil); err != nil {
 

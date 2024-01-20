@@ -11,7 +11,7 @@
     <ul>
         {{range .}}
             <li><a href="/adventurer?id={{.CharId}}">{{.Name}}</a></li>
-            <form method="POST" action="/update">
+            <form method="POST" action="/update?id={{.CharId}}">
                 <input type="hidden" name="id" value="{{ .CharId }}">
                 <input type="submit" value="Update">
             </form>
