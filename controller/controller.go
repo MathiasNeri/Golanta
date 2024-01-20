@@ -11,13 +11,11 @@ import (
 )
 
 type Adventurer struct {
-	CharId  int    `json:"id"`
-	Name    string `json:"name"`
-	Class   string `json:"class"`
-	Level   int    `json:"level"`
-	HP      int    `json:"hp"`
-	Attack  int    `json:"attack"`
-	Defense int    `json:"defense"`
+	CharId     int    `json:"id"`
+	Name       string `json:"name"`
+	Equipe     string `json:"equipe"`
+	Lvl_survie int    `json:"level"`
+	HP         int    `json:"hp"`
 }
 
 var adventurers []Adventurer
@@ -48,35 +46,20 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		LoadDataFromJSON()
 
 		name := r.FormValue("name")
-		class := r.FormValue("class")
+		equipe := r.FormValue("equipe")
+		level, errLevel := strconv.Atoi(r.FormValue("level"))
+		hp, errHp := strconv.Atoi(r.FormValue("hp"))
+
+		fmt.Println(errHp, errLevel)
 
 		charid := getNextCharID()
 
-		adventurers = append(adventurers, Adventurer{CharId: charid, Name: name, Class: class})
+		adventurers = append(adventurers, Adventurer{CharId: charid, Name: name, Equipe: equipe, Lvl_survie: level, HP: hp})
 		SaveDataToJSON()
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 	inittemplate.Temp.ExecuteTemplate(w, "create", nil)
-}
-
-func ProfileHandler(w http.ResponseWriter, r *http.Request) {
-	// Utilisez l'ID plutôt que le nom pour la recherche
-	idStr := r.FormValue("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		http.Error(w, "ID d'aventurier non valide", http.StatusBadRequest)
-		return
-	}
-
-	adventurer, err := FindAdventurerByID(id)
-	if err != nil {
-		http.Error(w, "Aventurier non trouvé", http.StatusNotFound)
-		return
-	}
-
-	// Affiche le profil de l'aventurier
-	inittemplate.Temp.ExecuteTemplate(w, "profile", adventurer)
 }
 
 func SaveDataToJSON() {

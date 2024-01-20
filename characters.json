@@ -2,28 +2,57 @@
   {
     "id": 1,
     "name": "abcedaire",
-    "class": "mage",
+    "equipe": "",
     "level": 0,
-    "hp": 0,
-    "attack": 0,
-    "defense": 0
+    "hp": 0
   },
   {
     "id": 2,
     "name": "hekp",
-    "class": "guerrier",
+    "equipe": "",
     "level": 0,
-    "hp": 0,
-    "attack": 0,
-    "defense": 0
+    "hp": 0
   },
   {
     "id": 3,
     "name": "opps",
-    "class": "mage",
+    "equipe": "",
     "level": 0,
-    "hp": 0,
-    "attack": 0,
-    "defense": 0
+    "hp": 0
+  },
+  {
+    "id": 4,
+    "name": "dfe",
+    "equipe": "",
+    "level": 0,
+    "hp": 0
+  },
+  {
+    "id": 5,
+    "name": "Neri_Mathias_API",
+    "equipe": "",
+    "level": 0,
+    "hp": 0
+  },
+  {
+    "id": 6,
+    "name": "b",
+    "equipe": "",
+    "level": 0,
+    "hp": 0
+  },
+  {
+    "id": 7,
+    "name": "jean",
+    "equipe": "Equipe_Rouge",
+    "level": 0,
+    "hp": 0
+  },
+  {
+    "id": 8,
+    "name": "Neri_Mathias_API",
+    "equipe": "Equipe_Rouge",
+    "level": 0,
+    "hp": 0
   }
 ]

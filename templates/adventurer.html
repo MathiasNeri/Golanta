@@ -1,4 +1,4 @@
-{{define "adventurer"}}
+{{ define "adventurer"}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +9,11 @@
 <body>
     <h1>Profil de l'Aventurier</h1>
     <p><strong>Nom:</strong> {{.Name}}</p>
-    <p><strong>Classe:</strong> {{.Class}}</p>
-    <p><strong>Niveau:</strong> {{.Level}}</p>
+    <p><strong>Equipe:</strong> {{.Equipe}}</p>
+    <p><strong>Niveau en survie:</strong> {{.Level}}</p>
     <p><strong>Points de vie:</strong> {{.HP}}</p>
-    <p><strong>Attaque:</strong> {{.Attack}}</p>
-    <p><strong>Défense:</strong> {{.Defense}}</p>
-
-    <p><a href="/adventurer/{{.CharId}}">Lien vers le profil</a></p>
+    
+    <p><a href="/">index</a></p>
 </body>
 </html>
-{{end}}
+{{ end}}
