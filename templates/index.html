@@ -11,6 +11,10 @@
     <ul>
         {{range .}}
             <li><a href="/adventurer?id={{.CharId}}">{{.Name}}</a></li>
+            <form method="POST" action="/update">
+                <input type="hidden" name="id" value="{{ .CharId }}">
+                <input type="submit" value="Update">
+            </form>
         {{end}}
     </ul>
     <a href="/create">créer un nouoveau personnage</a>

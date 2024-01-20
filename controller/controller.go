@@ -52,18 +52,14 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		hp, errHp := strconv.Atoi(r.FormValue("hp"))
 		res, errRes := strconv.Atoi(r.FormValue("res"))
 
-		// Vérifier les erreurs de conversion
 		if errHp != nil || errRes != nil {
 			fmt.Println("Error parsing HP or Res from form:", errHp, errRes)
-			// Envoyer une réponse d'erreur au client
 			http.Error(w, "Invalid HP or Res values", http.StatusBadRequest)
 			return
 		}
 
-		// Vérifier que la somme des HP et Res ne dépasse pas 10
 		if hp+res > 10 {
 			fmt.Println("La somme des HP et Res ne peut pas dépasser 10")
-			// Envoyer une réponse d'erreur au client
 			http.Error(w, "La somme des HP et Res ne peut pas dépasser 10", http.StatusBadRequest)
 			return
 		}
@@ -135,4 +131,40 @@ func getNextCharID() int {
 
 	// Increment the highest ID by 1 to get the next available ID
 	return highestID + 1
+}
+
+func UpdateHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		LoadDataFromJSON()
+
+		id, err := strconv.Atoi(r.FormValue("id"))
+		if err != nil {
+			http.Error(w, "Invalid character ID", http.StatusBadRequest)
+			return
+		}
+		for i, adventurer := range adventurers {
+			if adventurer.CharId == id {
+				adventurers[i].Name = r.FormValue("name")
+				adventurers[i].Equipe = r.FormValue("equipe")
+				adventurers[i].Lvl_survie = r.FormValue("level")
+				adventurers[i].HP, err = strconv.Atoi(r.FormValue("hp"))
+				adventurers[i].Res, err = strconv.Atoi(r.FormValue("res"))
+				if err != nil {
+					http.Error(w, "Invalid HP or Res values", http.StatusBadRequest)
+					return
+				}
+				if adventurers[i].HP+adventurers[i].Res > 10 {
+					http.Error(w, "La somme des HP et Res ne peut pas dépasser 10", http.StatusBadRequest)
+					return
+				}
+
+				SaveDataToJSON()
+				http.Redirect(w, r, "/", http.StatusSeeOther)
+				return
+			}
+		}
+		http.Error(w, "Aventurier non trouvé", http.StatusNotFound)
+	} else {
+		http.Error(w, "Mauvaise méthode HTTP", http.StatusMethodNotAllowed)
+	}
 }
