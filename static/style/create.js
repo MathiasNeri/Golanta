@@ -25,3 +25,5 @@ function updateSliders(changedSlider) {
 document.addEventListener('DOMContentLoaded', function () {
     updateSliders(document.getElementById('hp'));
 });
+
+

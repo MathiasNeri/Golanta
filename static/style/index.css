@@ -1,0 +1,113 @@
+@font-face {
+    font-family: "Wood";
+    src: url(/static/police/AlphaWood.ttf);
+}
+body {
+    background-image: url('/static/pictures/jungle.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Courier New', Courier, monospace;
+    color: #3e3e3e;
+}
+
+
+header h1 {
+    color: #f8f8f2;
+    padding: 20px;
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Georgia', serif;
+}
+
+ul li a, ul li form input[type="submit"], ul li p {
+    font-family: inherit;
+    color: #5b3a29;
+    text-shadow:
+        1px 1px 1px #fff,
+        2px 2px 1px rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+}
+
+
+ul {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+ul li {
+    background-image: url('/static/pictures/planche.png');
+    background-size: cover;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+    margin-right: 20px;
+    font-family: "Wood";
+    font-size: 20px;
+    color: #1b100b;
+    text-shadow:
+        1px 1px 0px #704514,
+        -1px -1px 0px #704514,
+        1px -1px 0px #704514,
+        -1px 1px 0px #704514;
+}
+
+
+input[type="submit"] {
+    background-color: #8B4513; 
+    color: #f8f8f2; 
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 4px #000;
+}
+
+input[type="submit"]:hover {
+    background-color: #A52A2A; 
+}
+
+
+@media (max-width: 768px) {
+    ul li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="submit"] {
+        margin-top: 10px; 
+    }
+}
+
+header {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    margin-bottom: 30px;
+}
+.create-character-btn {
+    display: inline-block;
+    background-color: #5C946E;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.create-character-btn:hover {
+    background-color: #4a7c59;
+}

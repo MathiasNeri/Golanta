@@ -1,38 +1,58 @@
 {{define "update"}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Adventurer</title>
+    <link rel="stylesheet" href="/static/style/create.css">
+    <script src="/static/style/create.js"></script>
 </head>
+
 <body>
     <h1>Update Adventurer</h1>
     <form action="/updateHandler" method="post">
+        <div class="msg">
+            <p>La somme des valeurs de Résistance et HP ne peut pas dépasser 10.</p>
+        </div>
         <input type="hidden" name="id" value="{{ .CharId }}" />
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ .Name }}" required />
+
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" value="{{ .Name }}" required />
+
+        <label for="equipe">Equipe :</label>
+        <select id="equipe" name="equipe" required>
+            <option value="Equipe Jaune" {{if eq .Equipe "Equipe jaune" }}selected{{end}}>Equipe jaune</option>
+            <option value="Equipe Rouge" {{if eq .Equipe "Equipe Rouge" }}selected{{end}}>Equipe Rouge</option>
+        </select>
+
+        <label for="hp">HP :</label>
+        <div class="PB-range-slider-div">
+            <input type="range" id="hp" name="hp" min="0" max="10" value="{{ .HP }}" class="PB-range-slider"
+                oninput="updateSliders(this)">
+            <span id="hp-value" class="PB-range-slidervalue">{{ .HP }}</span>
         </div>
-        <div>
-            <label for="equipe">Equipe:</label>
-            <input type="text" id="equipe" name="equipe" value="{{ .Equipe }}" required />
+
+        <label for="res">Resistance :</label>
+        <div class="PB-range-slider-div">
+            <input type="range" id="res" name="res" min="0" max="10" value="{{ .Res }}" class="PB-range-slider"
+                oninput="updateSliders(this)">
+            <span id="res-value" class="PB-range-slidervalue">{{ .Res }}</span>
         </div>
-        <div>
-            <label for="level">Niveau de Survie:</label>
-            <input type="text" id="level" name="level" value="{{ .Lvl_survie }}" required />
-        </div>
-        <div>
-            <label for="hp">HP:</label>
-            <input type="number" id="hp" name="hp" value="{{ .HP }}" min="0" max="10" required />
-        </div>
-        <div>
-            <label for="res">Res:</label>
-            <input type="number" id="res" name="res" value="{{ .Res }}" min="0" max="10" required />
-        </div>
-        <div>
-            <input type="submit" value="Update Adventurer" />
-        </div>
+
+        <label for="level">Niveau De Survie :</label>
+        <select id="level" name="level" required>
+            <option value="Nul" {{if eq .Lvl_survie "Nul" }}selected{{end}}>Nul</option>
+            <option value="Pas trop mal" {{if eq .Lvl_survie "Pas trop mal" }}selected{{end}}>Pas trop mal</option>
+            <option value="Bon" {{if eq .Lvl_survie "Bon" }}selected{{end}}>Bon</option>
+            <option value="Excellent" {{if eq .Lvl_survie "Excellent" }}selected{{end}}>Excellent</option>
+        </select>
+
+        <button type="submit">Update Adventurer</button>
     </form>
 </body>
+
 </html>
+
 {{end}}

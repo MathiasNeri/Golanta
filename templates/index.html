@@ -4,21 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style/index.css">
+
     <title>Liste des Aventuriers</title>
 </head>
 <body>
-    <h1>Liste des Aventuriers</h1>
+    <header>
+        <h1>Liste des Aventuriers</h1>
+        <a href="/create" class="create-character-btn">Créer un personnage</a>
+    </header>
     <ul>
         {{range .}}
-            <li><a href="/adventurer?id={{.CharId}}">{{.Name}}</a></li>
-            <form method="POST" action="/update?id={{.CharId}}">
-                <input type="hidden" name="id" value="{{ .CharId }}">
-                <input type="submit" value="Update">
-            </form>
+            <li>
+                <p><strong>Nom:</strong> {{.Name}}</p>
+                <p><strong>Equipe:</strong> {{.Equipe}}</p>
+                <p><strong>Niveau en survie:</strong> {{.Lvl_survie}}</p>
+                <p><strong>Points de vie:</strong> {{.HP}}</p>
+                <p><strong>Resistance:</strong> {{.Res}}</p>
+                <form method="POST" action="/update?id={{.CharId}}" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ .CharId }}">
+                    <input type="submit" value="Update">
+                </form>
+                <form method="POST" action="/delete" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ .CharId }}">
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this adventurer?');">
+                </form>
+            </li>
         {{end}}
     </ul>
-    <a href="/create">créer un nouoveau personnage</a>
 </body>
-
 </html>
 {{end}}

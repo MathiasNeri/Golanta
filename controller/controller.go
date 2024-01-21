@@ -28,20 +28,6 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	inittemplate.Temp.ExecuteTemplate(w, "index", adventurers)
 }
 
-func AdventurerHandler(w http.ResponseWriter, r *http.Request) {
-	//Charger le JSO
-	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
-	LoadDataFromJSON()
-	var selectedAdventurer Adventurer
-	for _, adventurer := range adventurers {
-		fmt.Println(adventurer)
-		if adventurer.CharId == id {
-			selectedAdventurer = adventurer
-		}
-	}
-	inittemplate.Temp.ExecuteTemplate(w, "adventurer", selectedAdventurer)
-}
-
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		LoadDataFromJSON()
@@ -171,6 +157,29 @@ func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 
+				SaveDataToJSON()
+				http.Redirect(w, r, "/", http.StatusSeeOther)
+				return
+			}
+		}
+		http.Error(w, "Aventurier non trouvé", http.StatusNotFound)
+	} else {
+		http.Error(w, "Mauvaise méthode HTTP", http.StatusMethodNotAllowed)
+	}
+}
+
+func DeleteHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		LoadDataFromJSON()
+
+		id, err := strconv.Atoi(r.FormValue("id"))
+		if err != nil {
+			http.Error(w, "Invalid character ID", http.StatusBadRequest)
+			return
+		}
+		for i, adventurer := range adventurers {
+			if adventurer.CharId == id {
+				adventurers = append(adventurers[:i], adventurers[i+1:]...)
 				SaveDataToJSON()
 				http.Redirect(w, r, "/", http.StatusSeeOther)
 				return

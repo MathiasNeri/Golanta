@@ -135,3 +135,14 @@ button:hover {
 .PB-range-slidervalue {
     font-weight: 600;
 }
+body .msg {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #8B4513;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px; /* Espacement par rapport aux éléments précédents */
+    border: 1px solid #000000; /* Bordure autour du message */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Ombre légère */
+}
