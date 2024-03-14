@@ -1,90 +1,58 @@
 [
   {
-    "id": 6,
-    "name": "hekp",
-    "equipe": "Equipe Jaune",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 8,
-    "name": "rfez",
-    "equipe": "Equipe Rouge",
-    "level": "Excellent",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 9,
-    "name": "efs",
-    "equipe": "Equipe Jaune",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 10,
-    "name": "qd",
-    "equipe": "Equipe Rouge",
-    "level": "Pas trop mal",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 11,
-    "name": "z\"a",
-    "equipe": "Equipe Jaune",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 12,
-    "name": "vdsfrgv",
-    "equipe": "Equipe Rouge",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 13,
-    "name": "qzed",
-    "equipe": "Equipe Jaune",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 14,
-    "name": "fedfse",
-    "equipe": "Equipe Rouge",
-    "level": "Bon",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 15,
-    "name": "mat",
-    "equipe": "Equipe Jaune",
-    "level": "Nul",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 16,
-    "name": "ffsc",
-    "equipe": "Equipe Rouge",
-    "level": "Pas trop mal",
-    "hp": 5,
-    "res": 5
-  },
-  {
-    "id": 17,
+    "id": 1,
     "name": "nicolas",
     "equipe": "Equipe Rouge",
     "level": "Excellent",
-    "hp": 10,
-    "res": 0
+    "hp": 7,
+    "res": 3
+  },
+  {
+    "id": 2,
+    "name": "hehz",
+    "equipe": "Equipe Rouge",
+    "level": "Bon",
+    "hp": 8,
+    "res": 2
+  },
+  {
+    "id": 3,
+    "name": "oo",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
+  },
+  {
+    "id": 4,
+    "name": "oijo",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
+  },
+  {
+    "id": 5,
+    "name": "joris",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
+  },
+  {
+    "id": 6,
+    "name": "ij",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
+  },
+  {
+    "id": 7,
+    "name": "jh",
+    "equipe": "Equipe Jaune",
+    "level": "Nul",
+    "hp": 5,
+    "res": 5
   }
 ]
